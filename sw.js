@@ -4,13 +4,15 @@ const appVersion = '0.0.1';
 const appCacheVersion = 'appCache-'+appVersion;
 const appShellFiles = [
   './app.js',
+  './utils.js',
   './index.html',
   './style.css',
   './img/icon-32.png',
   './img/icon-64.png',
   './img/icon-128.png',
   './img/icon-256.png',
-  './img/icon-512.png'
+  './img/icon-512.png',
+  './puzzles.js'
 ];
 
 // Installing Service Worker

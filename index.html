@@ -8,8 +8,18 @@
     <link rel="manifest" href="./manifest.webmanifest"/>
     <link rel="stylesheet" href="./style.css"/>
     <script src="./app.js" defer></script>
+    <script src="./utils.js" defer></script>
+    <script src="./puzzles.js" defer></script>
   </head>
   <body>
-    <h1>PuzzlePWA</h1>
+    <h1>Puzzle tracker</h1>
+    <div id="puzzleGrid" class="puzzleGrid">
+        
+    </div>
+    <button onclick="newPuzzle()">Add a puzzle</button>
+
+    <!-- TEMPLATES -->
+    <a id="puzzleCellTemplate" class="puzzleCell" hidden="true"></a>
+    
   </body>
 </html>

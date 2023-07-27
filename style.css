@@ -1,3 +1,7 @@
+html {
+    font-size:16px;
+}
+
 .puzzleGrid {
     display: flex;
     flex-flow: column;

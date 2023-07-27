@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>Puzzle tracker</title>
+    <meta name="viewport" content="width=device-width">
     <meta property="og:image" content="img/icon-512.png">
     <link rel="shortcut icon" href="img/icon-512.png">
     <link rel="manifest" href="./manifest.webmanifest"/>
@@ -14,12 +15,12 @@
   <body>
     <h1>Puzzle tracker</h1>
     <div id="puzzleGrid" class="puzzleGrid">
-        
+        <!-- puzzleCellTemplate clones here -->
     </div>
     <button onclick="newPuzzle()">Add a puzzle</button>
 
     <!-- TEMPLATES -->
     <a id="puzzleCellTemplate" class="puzzleCell" hidden="true"></a>
-    
+
   </body>
 </html>

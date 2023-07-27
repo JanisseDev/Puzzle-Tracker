@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
+
+<head>
+    <meta charset="utf-8" />
     <title>Puzzle tracker</title>
     <meta name="viewport" content="width=device-width">
     <meta property="og:image" content="img/icon-512.png">
     <link rel="shortcut icon" href="img/icon-512.png">
-    <link rel="manifest" href="./manifest.webmanifest"/>
-    <link rel="stylesheet" href="./style.css"/>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./style.css" />
     <script src="./app.js" defer></script>
     <script src="./utils.js" defer></script>
-    <script src="./puzzles.js" defer></script>
-  </head>
-  <body>
+    <script src="./index.js" defer></script>
+</head>
+
+<body>
     <h1>Puzzle tracker</h1>
     <div id="puzzleGrid" class="puzzleGrid">
         <!-- puzzleCellTemplate clones here -->
@@ -22,5 +24,6 @@
     <!-- TEMPLATES -->
     <a id="puzzleCellTemplate" class="puzzleCell" hidden="true"></a>
 
-  </body>
+</body>
+
 </html>

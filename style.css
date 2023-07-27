@@ -15,3 +15,19 @@ html {
     border-radius: 20px;
     flex-grow: 1;
 }
+
+.sessionGrid {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.sessionCell {
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 20px;
+    flex-grow: 1;
+}

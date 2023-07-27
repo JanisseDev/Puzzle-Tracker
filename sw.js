@@ -1,18 +1,23 @@
-const appVersion = '0.0.1';
+const appVersion = '0.0.2';
 
 // Files to cache
 const appCacheVersion = 'appCache-'+appVersion;
 const appShellFiles = [
-  './app.js',
-  './utils.js',
-  './index.html',
-  './style.css',
-  './img/icon-32.png',
-  './img/icon-64.png',
-  './img/icon-128.png',
-  './img/icon-256.png',
-  './img/icon-512.png',
-  './puzzles.js'
+    // General
+    './app.js',
+    './utils.js',
+    './style.css',
+    // Pages
+    './index.html',
+    './index.js',
+    './puzzlePage.html',
+    './puzzlePage.js',
+    // Resources
+    './img/icon-32.png',
+    './img/icon-64.png',
+    './img/icon-128.png',
+    './img/icon-256.png',
+    './img/icon-512.png',
 ];
 
 // Installing Service Worker

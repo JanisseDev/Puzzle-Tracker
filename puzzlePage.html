@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Puzzle tracker</title>
+    <meta name="viewport" content="width=device-width">
+    <meta property="og:image" content="img/icon-512.png">
+    <link rel="shortcut icon" href="img/icon-512.png">
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+    <script src="./utils.js" defer></script>
+    <script src="./puzzlePage.js" defer></script>
+</head>
+
+<body>
+    <h1>Puzzle tracker</h1>
+    <h2 id="puzzleTitle"></h2>
+    <div id="sessionGrid" class="sessionGrid">
+        <!-- sessionCellTemplate clones here -->
+    </div>
+    <button onclick="newSessionClicked()">New session</button>
+
+    <!-- DIALOGS -->
+    <dialog id="newSessionDialog">
+        <h3>Enter your session's data:</h3>
+        <form id="newSessionForm" method="dialog">
+            <label for="sessionDuration">Session duration: </label>
+            <input id="sessionDuration" type="time" name="sessionDuration" value="00:00" required />
+            </br>
+            <label for="addedPieces">Added piece during the session: </label>
+            <input id="addedPieces" type="number" name="addedPieces" value=0 required />
+            </br></br>
+            <div>
+                <input type="button" value="Cancel" onclick="newSessionDialogCancel()">
+                <input type="button" value="Submit" onclick="newSessionDialogSubmit()">
+            </div>
+        </form>
+    </dialog>
+
+    <!-- TEMPLATES -->
+    <div id="sessionCellTemplate" class="sessionCell" hidden="true">
+        <a class="sessionCellDuration"></a>
+        </br>
+        <a class="sessionCellAddedPieces"></a>
+    </div>
+
+    <!-- DEBUG -->
+    <details>
+        <summary>Debug JSON</summary>
+        <p id="puzzleJson"></p>
+    </details>
+</body>
+
+</html>

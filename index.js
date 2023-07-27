@@ -1,6 +1,6 @@
 function reloadPuzzles() {
     let grid = document.getElementById("puzzleGrid");
-    while(grid.lastElementChild) {
+    while (grid.lastElementChild) {
         grid.removeChild(grid.lastElementChild);
     }
     let cellTemplate = document.getElementById("puzzleCellTemplate");
@@ -12,6 +12,7 @@ function reloadPuzzles() {
                 cell.id = value.id;
                 cell.innerText = value.name;
                 cell.hidden = false;
+                cell.href = `puzzlePage.html?id=${value.id}`;
                 grid.appendChild(cell);
             }
         }
@@ -19,7 +20,7 @@ function reloadPuzzles() {
 }
 
 function newPuzzle() {
-    let puzzleName = window.prompt("Please enter a puzzle name","");
+    let puzzleName = window.prompt("Please enter a puzzle name", "");
     if (puzzleName != null && puzzleName != "") {
         let puzzleData = {
             id: self.crypto.randomUUID(),

@@ -8,24 +8,33 @@ function loadPage() {
 }
 
 function reloadData() {
-    document.getElementById('puzzleTitle').innerText = jsonData.name;
-    document.getElementById('puzzleJson').innerText = JSON.stringify(jsonData, null, "\t");
+    // Sessions
     let sessionsGrid = document.getElementById('sessionGrid');
     let sessionCellTemplate = document.getElementById('sessionCellTemplate');
+    var addedPiecesCount = 0;
     while (sessionsGrid.lastElementChild) {
         sessionsGrid.removeChild(sessionsGrid.lastElementChild);
     }
     if (jsonData.sessions != null) {
         jsonData.sessions.forEach(sessionData => {
             let sessionCell = sessionCellTemplate.cloneNode(true);
-            console.log(sessionCell);
             sessionCell.id = sessionData.id;
             sessionCell.querySelector(".sessionCellDuration").innerText = `Session duration: ${sessionData.duration}`;
+            addedPiecesCount += sessionData.addedPieces;
             sessionCell.querySelector(".sessionCellAddedPieces").innerText = `Pieces added: ${sessionData.addedPieces}`;
             sessionCell.hidden = false;
             sessionsGrid.appendChild(sessionCell);
         });
     }
+
+    // General info
+    document.getElementById('puzzleTitle').innerText = jsonData.name;
+    let progression = (addedPiecesCount / jsonData.piecesCount) * 100;
+    document.getElementById('progressBar').value = progression;
+    document.getElementById('progressLabel').innerText = `${addedPiecesCount}/${jsonData.piecesCount}`;
+
+    // Debug spoiler
+    document.getElementById('puzzleJson').innerText = JSON.stringify(jsonData, null, "\t");
 }
 
 function newSessionClicked() {
@@ -49,7 +58,7 @@ function createSession() {
             id: self.crypto.randomUUID(),
             creationDate: Date.now(),
             duration: form.elements["sessionDuration"].value,
-            addedPieces: form.elements["addedPieces"].value,
+            addedPieces: parseInt(form.elements["addedPieces"].value),
         }
         if (jsonData.sessions == null) {
             jsonData.sessions = []

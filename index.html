@@ -19,7 +19,24 @@
     <div id="puzzleGrid" class="puzzleGrid">
         <!-- puzzleCellTemplate clones here -->
     </div>
-    <button onclick="newPuzzle()">Add a puzzle</button>
+    <button onclick="newPuzzleClicked()">Add a puzzle</button>
+
+    <!-- DIALOGS -->
+    <dialog id="newPuzzleDialog">
+        <h3>Configure your puzzle:</h3>
+        <form id="newPuzzleForm" method="dialog">
+            <label for="puzzleName">Name: </label>
+            <input id="puzzleName" type="text" name="puzzleName" minlength="4" value="" required />
+            </br>
+            <label for="piecesCount">Pieces count: </label>
+            <input id="piecesCount" type="number" name="piecesCount" value=0 required />
+            </br></br>
+            <div>
+                <input type="button" value="Cancel" onclick="newPuzzleDialogCancel()">
+                <input type="button" value="Submit" onclick="newPuzzleDialogSubmit()">
+            </div>
+        </form>
+    </dialog>
 
     <!-- TEMPLATES -->
     <a id="puzzleCellTemplate" class="puzzleCell" hidden="true"></a>

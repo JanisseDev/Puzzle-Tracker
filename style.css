@@ -20,7 +20,12 @@ html {
     border: 1px solid;
     padding: 20px;
     border-radius: 20px;
+    display: flex;
+    flex-flow: row;
     flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .sessionGrid {
@@ -37,4 +42,13 @@ html {
     padding: 20px;
     border-radius: 20px;
     flex-grow: 1;
+}
+
+.deleteButton {
+    height: 20px;
+    color: red;
+}
+
+.displayNone {
+    display: none;
 }

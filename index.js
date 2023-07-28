@@ -10,9 +10,9 @@ function reloadPuzzles() {
             if (value.type == "puzzle") {
                 let cell = cellTemplate.cloneNode(true);
                 cell.id = value.id;
-                cell.innerText = value.name;
-                cell.hidden = false;
+                cell.querySelector("h3").innerText = value.name;
                 cell.href = `puzzlePage.html?id=${value.id}`;
+                cell.classList.remove("displayNone");
                 grid.appendChild(cell);
             }
         }
@@ -50,6 +50,27 @@ function createPuzzle() {
         window.onstorage();
     }
     form.reset();
+}
+
+function onPuzzleSelected(id) {
+    window.location.href=`puzzlePage.html?id=${id}`;
+}
+
+function deletePuzzleClicked(deleteButton, event) {
+    stopEventPropagation(event);
+    if (confirm(`Are you sure you want to delete puzzle #${deleteButton.parentNode.id}`)) {
+        window.localStorage.removeItem(deleteButton.parentNode.id);
+        window.onstorage();
+    }
+}
+
+function stopEventPropagation(event) {
+    if (event.stopPropagation){
+        event.stopPropagation();
+    }
+    else if(window.event){
+       window.event.cancelBubble=true;
+    }
 }
 
 reloadPuzzles();

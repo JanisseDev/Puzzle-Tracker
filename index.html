@@ -39,7 +39,10 @@
     </dialog>
 
     <!-- TEMPLATES -->
-    <a id="puzzleCellTemplate" class="puzzleCell" hidden="true"></a>
+    <div id="puzzleCellTemplate" class="puzzleCell displayNone" onclick="onPuzzleSelected(this.id)">
+        <h3></h3>
+        <button class="deleteButton" onclick="deletePuzzleClicked(this, event)">Delete</button>
+    </div>
 
 </body>
 

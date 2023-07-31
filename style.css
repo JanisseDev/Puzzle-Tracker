@@ -1,5 +1,46 @@
+:root {
+    --main-bg-color: #457b9d;
+}
+
 html {
-    font-size:16px;
+    font-size: 16px;
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: var(--main-bg-color);
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+    overflow: auto;
+}
+
+h1.title {
+    font-size: 32px;
+    color: white;
+    margin: 0px;
+    padding: 16px 0px;
+    text-align: center;
+}
+
+.mainFlex {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mainView {
+    flex-grow: 1;
+    background: white;
+    opacity: 0.8;
+    border-radius: 32px 32px 0px 0px;
+    padding: 20px;
 }
 
 .flexRowCenterGap10 {

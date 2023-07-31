@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Puzzle tracker</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="img/icon-512.png">
     <link rel="shortcut icon" href="img/icon-512.png">
     <link rel="manifest" href="./manifest.webmanifest" />
@@ -15,11 +15,17 @@
 </head>
 
 <body>
-    <h1>Puzzle tracker</h1>
-    <div id="puzzleGrid" class="puzzleGrid">
-        <!-- puzzleCellTemplate clones here -->
+    <div class="mainFlex">
+        <header>
+            <h1 class="title">Puzzle tracker</h1>
+        </header>
+        <div class="mainView">
+            <div id="puzzleGrid" class="puzzleGrid">
+                <!-- puzzleCellTemplate clones here -->
+            </div>
+            <button onclick="newPuzzleClicked()">Add a puzzle</button>
+        </div>
     </div>
-    <button onclick="newPuzzleClicked()">Add a puzzle</button>
 
     <!-- DIALOGS -->
     <dialog id="newPuzzleDialog">

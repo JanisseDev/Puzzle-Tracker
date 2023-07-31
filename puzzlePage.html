@@ -15,17 +15,29 @@
 </head>
 
 <body>
-    <h1>Puzzle tracker</h1>
-    <h2 id="puzzleTitle"></h2>
-    <div class="flexRowCenterGap10">
-        <progress id="progressBar" value="0" max="100"></progress>
-        <p id="progressLabel">0%</p>
+    <div class="mainFlex">
+        <header>
+            <h1 class="title">Puzzle tracker</h1>
+        </header>
+        <div class="mainView">
+            <h2 id="puzzleTitle"></h2>
+            <div class="flexRowCenterGap10">
+                <progress id="progressBar" value="0" max="100"></progress>
+                <p id="progressLabel">0%</p>
+            </div>
+            <p id="totalTimeLabel">Total time: -</p>
+            <div id="sessionGrid" class="sessionGrid">
+                <!-- sessionCellTemplate clones here -->
+            </div>
+            <button onclick="newSessionClicked()">New session</button>
+
+            <!-- DEBUG -->
+            <details>
+                <summary>Debug JSON</summary>
+                <p id="puzzleJson"></p>
+            </details>
+        </div>
     </div>
-    <p id="totalTimeLabel">Total time: -</p>
-    <div id="sessionGrid" class="sessionGrid">
-        <!-- sessionCellTemplate clones here -->
-    </div>
-    <button onclick="newSessionClicked()">New session</button>
 
     <!-- DIALOGS -->
     <dialog id="newSessionDialog">
@@ -50,12 +62,6 @@
         </br>
         <a class="sessionCellAddedPieces"></a>
     </div>
-
-    <!-- DEBUG -->
-    <details>
-        <summary>Debug JSON</summary>
-        <p id="puzzleJson"></p>
-    </details>
 </body>
 
 </html>

@@ -12,11 +12,16 @@ function reloadData() {
     let sessionsGrid = document.getElementById('sessionGrid');
     let sessionCellTemplate = document.getElementById('sessionCellTemplate');
     var addedPiecesCount = 0;
+    var totalTimeInMinutes = 0;
     while (sessionsGrid.lastElementChild) {
         sessionsGrid.removeChild(sessionsGrid.lastElementChild);
     }
     if (jsonData.sessions != null) {
         jsonData.sessions.forEach(sessionData => {
+            addedPiecesCount += sessionData.addedPieces;
+            let [hours, minutes] = sessionData.duration.split(":");
+            totalTimeInMinutes += Number(hours)*60 + Number(minutes);
+
             let sessionCell = sessionCellTemplate.cloneNode(true);
             sessionCell.id = sessionData.id;
             sessionCell.querySelector(".sessionCellDuration").innerText = `Session duration: ${sessionData.duration}`;
@@ -32,10 +37,19 @@ function reloadData() {
     let progression = (addedPiecesCount / jsonData.piecesCount) * 100;
     document.getElementById('progressBar').value = progression;
     document.getElementById('progressLabel').innerText = `${addedPiecesCount}/${jsonData.piecesCount}`;
+    console.log(totalTimeInMinutes);
+    document.getElementById('totalTimeLabel').innerText = `Total time: ${toHoursAndMinutes(totalTimeInMinutes)}`;
 
     // Debug spoiler
     document.getElementById('puzzleJson').innerText = JSON.stringify(jsonData, null, "\t");
 }
+
+function toHoursAndMinutes(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+  
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  }
 
 function newSessionClicked() {
     document.getElementById('newSessionDialog').showModal();

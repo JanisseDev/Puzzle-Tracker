@@ -25,7 +25,6 @@ function reloadData() {
             let sessionCell = sessionCellTemplate.cloneNode(true);
             sessionCell.id = sessionData.id;
             sessionCell.querySelector(".sessionCellDuration").innerText = `Session duration: ${sessionData.duration}`;
-            addedPiecesCount += sessionData.addedPieces;
             sessionCell.querySelector(".sessionCellAddedPieces").innerText = `Pieces added: ${sessionData.addedPieces}`;
             sessionCell.hidden = false;
             sessionsGrid.appendChild(sessionCell);

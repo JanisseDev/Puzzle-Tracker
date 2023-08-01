@@ -17,7 +17,7 @@ function reloadPuzzles() {
                     jsonData.sessions.forEach(sessionData => {
                         addedPiecesCount += sessionData.addedPieces;
                     });
-                    progressValue = Math.ceil((addedPiecesCount / jsonData.piecesCount) * 100);
+                    progressValue = Math.floor((addedPiecesCount / jsonData.piecesCount) * 100);
                 }
                 cell.querySelector(".progressText").innerText = `${progressValue}%`;
                 cell.querySelector(".progressCircle").style.setProperty('--fillValue', progressValue);

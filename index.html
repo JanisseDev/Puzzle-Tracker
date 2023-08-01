@@ -8,7 +8,9 @@
     <meta property="og:image" content="img/icon-512.png">
     <link rel="shortcut icon" href="img/icon-512.png">
     <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./theme.css" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./index.css" />
     <script src="./app.js" defer></script>
     <script src="./utils.js" defer></script>
     <script src="./index.js" defer></script>
@@ -46,8 +48,8 @@
 
     <!-- TEMPLATES -->
     <div id="puzzleCellTemplate" class="puzzleCell displayNone" onclick="onPuzzleSelected(this.id)">
-        <h3></h3>
-        <button class="deleteButton" onclick="deletePuzzleClicked(this, event)">Delete</button>
+        <div class="progressCircle"></div>
+        <p class="puzzleTitle"></p>
     </div>
 
 </body>

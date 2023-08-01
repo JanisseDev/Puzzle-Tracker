@@ -10,7 +10,7 @@ function reloadPuzzles() {
             if (value.type == "puzzle") {
                 let cell = cellTemplate.cloneNode(true);
                 cell.id = value.id;
-                cell.querySelector("h3").innerText = value.name;
+                cell.querySelector(".puzzleTitle").innerText = value.name;
                 cell.href = `puzzlePage.html?id=${value.id}`;
                 cell.classList.remove("displayNone");
                 grid.appendChild(cell);

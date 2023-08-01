@@ -1,7 +1,3 @@
-:root {
-    --main-bg-color: #457b9d;
-}
-
 html {
     font-size: 16px;
     margin: 0;
@@ -11,7 +7,7 @@ html {
 }
 
 body {
-    background: var(--main-bg-color);
+    background: var(--primaryColor);
     margin: 0;
     height: 100%;
     min-height: 100%;
@@ -50,46 +46,6 @@ h1.title {
     gap: 10px;
 }
 
-.puzzleGrid {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    gap: 10px;
-}
-
-.puzzleCell {
-    border: 1px solid;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-flow: row;
-    flex-grow: 1;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.sessionGrid {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    border: 1px solid;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-.sessionCell {
-    border: 1px solid;
-    padding: 20px;
-    border-radius: 20px;
-    flex-grow: 1;
-}
-
-.deleteButton {
-    height: 20px;
-    color: red;
-}
-
 .displayNone {
-    display: none;
+    display: none !important;
 }

@@ -6,10 +6,13 @@ const appShellFiles = [
     // General
     './app.js',
     './utils.js',
+    './theme.css',
     './style.css',
     // Pages
+    './index.css',
     './index.html',
     './index.js',
+    './puzzlePage.css',
     './puzzlePage.html',
     './puzzlePage.js',
     // Resources

@@ -35,6 +35,9 @@
     border: 1px solid;
     border-radius: 50%;
     border-color: var(--accentTextColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -50,6 +53,12 @@
     border-color: var(--accentTextColor);
     -webkit-mask: conic-gradient(black calc(var(--fillValue)*1%), #0000 0);
     mask: conic-gradient(black calc(var(--fillValue)*1%), #0000 0);
+}
+
+.progressText {
+    margin: 0;
+    text-align: center;
+    color: var(--accentTextColor);
 }
 
 .deleteButton {

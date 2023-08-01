@@ -6,12 +6,22 @@ function reloadPuzzles() {
     let cellTemplate = document.getElementById("puzzleCellTemplate");
     for (var key in window.localStorage) {
         if (localStorage.hasOwnProperty(key)) {
-            let value = JSON.parse(window.localStorage.getItem(key));
-            if (value.type == "puzzle") {
+            let jsonData = JSON.parse(window.localStorage.getItem(key));
+            if (jsonData.type == "puzzle") {
                 let cell = cellTemplate.cloneNode(true);
-                cell.id = value.id;
-                cell.querySelector(".puzzleTitle").innerText = value.name;
-                cell.href = `puzzlePage.html?id=${value.id}`;
+                cell.id = jsonData.id;
+                cell.querySelector(".puzzleTitle").innerText = jsonData.name;
+                var progressValue = 0;
+                if (jsonData.sessions != null) {
+                    var addedPiecesCount = 0;
+                    jsonData.sessions.forEach(sessionData => {
+                        addedPiecesCount += sessionData.addedPieces;
+                    });
+                    progressValue = Math.ceil((addedPiecesCount / jsonData.piecesCount) * 100);
+                }
+                cell.querySelector(".progressText").innerText = `${progressValue}%`;
+                cell.querySelector(".progressCircle").style.setProperty('--fillValue', progressValue);
+                cell.href = `puzzlePage.html?id=${jsonData.id}`;
                 cell.classList.remove("displayNone");
                 grid.appendChild(cell);
             }
@@ -53,7 +63,7 @@ function createPuzzle() {
 }
 
 function onPuzzleSelected(id) {
-    window.location.href=`puzzlePage.html?id=${id}`;
+    window.location.href = `puzzlePage.html?id=${id}`;
 }
 
 function deletePuzzleClicked(deleteButton, event) {
@@ -65,11 +75,11 @@ function deletePuzzleClicked(deleteButton, event) {
 }
 
 function stopEventPropagation(event) {
-    if (event.stopPropagation){
+    if (event.stopPropagation) {
         event.stopPropagation();
     }
-    else if(window.event){
-       window.event.cancelBubble=true;
+    else if (window.event) {
+        window.event.cancelBubble = true;
     }
 }
 

@@ -22,6 +22,10 @@ const appShellFiles = [
     './img/icon-256.png',
     './img/icon-512.png',
     './img/plus.svg',
+    // Fonts
+    './fonts/Roboto-Black.ttf',
+    './fonts/Roboto-Regular.ttf',
+    './fonts/Roboto-Light.ttf',
 ];
 
 // Installing Service Worker

@@ -1,3 +1,15 @@
+@font-face { font-family: roboto-black; src: url('./fonts/Roboto-Black.ttf'); }
+@font-face { font-family: roboto-regular; src: url('./fonts/Roboto-Regular.ttf'); }
+@font-face { font-family: roboto-light; src: url('./fonts/Roboto-Light.ttf'); }
+
+h1 {
+    font-family: roboto-black;
+}
+
+h2, h3, a, p {
+    font-family: roboto-regular;
+}
+
 html {
     font-size: 16px;
     margin: 0;

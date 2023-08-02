@@ -13,3 +13,8 @@
     border-radius: 20px;
     flex-grow: 1;
 }
+
+#debugJson {
+    font-size: 12px;
+    tab-size: 20px;
+}

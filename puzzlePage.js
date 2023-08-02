@@ -40,7 +40,7 @@ function reloadData() {
     document.getElementById('totalTimeLabel').innerText = `Total time: ${toHoursAndMinutes(totalTimeInMinutes)}`;
 
     // Debug spoiler
-    document.getElementById('puzzleJson').innerText = JSON.stringify(jsonData, null, "\t");
+    document.getElementById('debugJson').innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;
 }
 
 function toHoursAndMinutes(totalMinutes) {

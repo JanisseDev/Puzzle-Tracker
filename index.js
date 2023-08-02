@@ -1,9 +1,13 @@
 function reloadPuzzles() {
     let grid = document.getElementById("puzzleGrid");
-    while (grid.lastElementChild) {
-        grid.removeChild(grid.lastElementChild);
-    }
+    let gridChildren = [...grid.children];
+    gridChildren.forEach(child => {
+        if (child.id != "addPuzzleCell") {
+            grid.removeChild(child);
+        }
+    });
     let cellTemplate = document.getElementById("puzzleCellTemplate");
+    var curId = 0;
     for (var key in window.localStorage) {
         if (localStorage.hasOwnProperty(key)) {
             let jsonData = JSON.parse(window.localStorage.getItem(key));
@@ -21,9 +25,11 @@ function reloadPuzzles() {
                 }
                 cell.querySelector(".progressText").innerText = `${progressValue}%`;
                 cell.querySelector(".progressCircle").style.setProperty('--fillValue', progressValue);
+                cell.style.setProperty('order', curId);
                 cell.href = `puzzlePage.html?id=${jsonData.id}`;
                 cell.classList.remove("displayNone");
                 grid.appendChild(cell);
+                curId += 1;
             }
         }
     }

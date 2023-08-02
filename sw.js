@@ -1,4 +1,4 @@
-const appVersion = '0.0.4';
+const appVersion = '0.0.5';
 
 // Files to cache
 const appCacheVersion = 'appCache-'+appVersion;
@@ -21,6 +21,7 @@ const appShellFiles = [
     './img/icon-128.png',
     './img/icon-256.png',
     './img/icon-512.png',
+    './img/plus.svg',
 ];
 
 // Installing Service Worker

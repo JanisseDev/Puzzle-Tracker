@@ -11,12 +11,14 @@ function reloadData() {
     // Sessions
     let sessionsGrid = document.getElementById('sessionGrid');
     let sessionCellTemplate = document.getElementById('sessionCellTemplate');
+    var sessionCount = 0;
     var addedPiecesCount = 0;
     var totalTimeInMinutes = 0;
     while (sessionsGrid.lastElementChild) {
         sessionsGrid.removeChild(sessionsGrid.lastElementChild);
     }
     if (jsonData.sessions != null) {
+        sessionCount = jsonData.sessions.length;
         jsonData.sessions.forEach(sessionData => {
             addedPiecesCount += sessionData.addedPieces;
             let [hours, minutes] = sessionData.duration.split(":");
@@ -33,11 +35,20 @@ function reloadData() {
 
     // General info
     document.getElementById('puzzleTitle').innerText = jsonData.name;
-    let progression = (addedPiecesCount / jsonData.piecesCount) * 100;
-    document.getElementById('progressBar').value = progression;
-    document.getElementById('progressLabel').innerText = `${addedPiecesCount}/${jsonData.piecesCount}`;
-    console.log(totalTimeInMinutes);
-    document.getElementById('totalTimeLabel').innerText = `Total time: ${toHoursAndMinutes(totalTimeInMinutes)}`;
+    let progressValue = Math.floor((addedPiecesCount / jsonData.piecesCount) * 100);
+    document.getElementById('progressText').innerText = `${progressValue}%`;
+    document.getElementById('progressCircle').style.setProperty('--fillValue', progressValue);
+    document.getElementById('totalTime').innerText = toHoursAndMinutes(totalTimeInMinutes);
+    var startedDaysAgo = Math.floor((new Date() - jsonData.creationDate) / 86400000);   //86400000 ms in a day
+    switch(startedDaysAgo) {
+        case 0: document.getElementById('startedAgo').innerText = "Today"; break;
+        case 1: document.getElementById('startedAgo').innerText = "Yesterday"; break;
+        default: document.getElementById('startedAgo').innerText = `${startedDaysAgo} days ago`; break;
+    }
+    document.getElementById('sessionCount').innerText = sessionCount;
+    document.getElementById('addedPieces').innerText = addedPiecesCount;
+    document.getElementById('piecesLeft').innerText = jsonData.piecesCount - addedPiecesCount;
+    document.getElementById('piecesPerSession').innerText = Math.floor((addedPiecesCount / sessionCount));
 
     // Debug spoiler
     document.getElementById('debugJson').innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;

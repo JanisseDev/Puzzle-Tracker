@@ -1,4 +1,4 @@
-const appVersion = '0.0.5';
+const appVersion = '0.0.6';
 
 // Files to cache
 const appCacheVersion = 'appCache-'+appVersion;

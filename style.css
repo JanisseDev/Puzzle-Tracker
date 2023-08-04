@@ -61,3 +61,37 @@ h1.title {
 .displayNone {
     display: none !important;
 }
+
+.progressCircle {
+    --fillValue: 40;
+    --borderThickness: 6px;
+    position: relative;
+    flex-grow: 1;
+    aspect-ratio: 1;
+    border: 1px solid;
+    border-radius: 50%;
+    border-color: var(--accentTextColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progressCircle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: var(--borderThickness) solid;
+    border-radius: 50%;
+    border-color: var(--accentTextColor);
+    -webkit-mask: conic-gradient(black calc(var(--fillValue)*1%), #0000 0);
+    mask: conic-gradient(black calc(var(--fillValue)*1%), #0000 0);
+}
+
+.progressText {
+    margin: 0;
+    text-align: center;
+    color: var(--accentTextColor);
+}

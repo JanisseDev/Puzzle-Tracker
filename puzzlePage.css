@@ -1,3 +1,52 @@
+.statGrid {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 105px);
+    margin: 16px;
+}
+
+.statCell {
+    position: relative;
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+    background-color: var(--primaryColor);
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.statValue {
+    margin: 0px;
+    font-size: 26px;
+    text-align: center;
+    color: var(--accentTextColor);
+    line-height: 1em;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.statTitle {
+    font-size: 14px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0px 8px;
+    text-align: center;
+    color: var(--accentTextColor);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    flex-grow: 0;
+}
+
 .sessionGrid {
     display: flex;
     flex-flow: column;

@@ -1,28 +1,25 @@
 .puzzleGrid {
-    display: grid;
+    display: flex;
     flex-flow: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, 105px);
 }
 
 .puzzleCell {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
     background-color: var(--accentColor);
     padding: 8px;
-    border-radius: 20px;
+    border-radius: 8px;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-}
-
-#addPuzzleCell {
-    justify-content: center;
-    font-size: 64px;
+    flex-grow: 1;
 }
 
 .puzzleTitle {
@@ -36,42 +33,8 @@
     text-overflow: ellipsis;
 }
 
-.progressCircle {
-    --fillValue: 40;
-    --borderThickness: 6px;
-    position: relative;
-    flex-grow: 1;
-    aspect-ratio: 1;
-    border: 1px solid;
-    border-radius: 50%;
-    border-color: var(--accentTextColor);
-    display: flex;
+#addPuzzleCell {
     justify-content: center;
-    align-items: center;
-
-}
-
-.progressCircle::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: var(--borderThickness) solid;
-    border-radius: 50%;
-    border-color: var(--accentTextColor);
-    -webkit-mask: conic-gradient(black calc(var(--fillValue)*1%), #0000 0);
-    mask: conic-gradient(black calc(var(--fillValue)*1%), #0000 0);
-}
-
-.progressText {
-    margin: 0;
-    text-align: center;
-    color: var(--accentTextColor);
-}
-
-.deleteButton {
-    height: 20px;
-    color: red;
+    font-size: 64px;
+    flex-grow: 0;
 }

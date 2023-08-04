@@ -23,11 +23,40 @@
         </header>
         <div class="mainView">
             <h2 id="puzzleTitle"></h2>
-            <div class="flexRowCenterGap10">
-                <progress id="progressBar" value="0" max="100"></progress>
-                <p id="progressLabel">0%</p>
+
+            <div id="statGrid" class="statGrid">
+                <div class="statCell">
+                    <div id="progressCircle" class="progressCircle">
+                        <h3 id="progressText" class="progressText"></h3>
+                    </div>
+                    <p id="progressTitle" class="statTitle">Progression</p>
+                </div>
+                <div class="statCell">
+                    <h3 id="totalTime" class="statValue">-</h3>
+                    <p class="statTitle">Total time</p>
+                </div>
+                <div class="statCell">
+                    <h3 id="startedAgo" class="statValue">-</h3>
+                    <p class="statTitle">Started</p>
+                </div>
+                <div class="statCell">
+                    <h3 id="sessionCount" class="statValue">-</h3>
+                    <p class="statTitle">Session count</p>
+                </div>
+                <div class="statCell">
+                    <h3 id="addedPieces" class="statValue">-</h3>
+                    <p class="statTitle">Added pieces</p>
+                </div>
+                <div class="statCell">
+                    <h3 id="piecesLeft" class="statValue">-</h3>
+                    <p class="statTitle">Pieces left</p>
+                </div>
+                <div class="statCell">
+                    <h3 id="piecesPerSession" class="statValue">-</h3>
+                    <p class="statTitle">Pieces/Session</p>
+                </div>
             </div>
-            <p id="totalTimeLabel">Total time: -</p>
+
             <div id="sessionGrid" class="sessionGrid">
                 <!-- sessionCellTemplate clones here -->
             </div>

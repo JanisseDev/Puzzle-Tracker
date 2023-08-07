@@ -39,7 +39,7 @@ function reloadData() {
     document.getElementById('progressText').innerText = `${progressValue}%`;
     document.getElementById('progressCircle').style.setProperty('--fillValue', progressValue);
     document.getElementById('totalTime').innerText = toHoursAndMinutes(totalTimeInMinutes);
-    var startedDaysAgo = Math.floor((new Date() - jsonData.creationDate) / 86400000);   //86400000 ms in a day
+    var startedDaysAgo = Math.floor((new Date() - new Date(jsonData.creationDate)) / 86400000);   //86400000 ms in a day
     switch(startedDaysAgo) {
         case 0: document.getElementById('startedAgo').innerText = "Today"; break;
         case 1: document.getElementById('startedAgo').innerText = "Yesterday"; break;
@@ -93,9 +93,6 @@ function createSession() {
             sessionDate: new Date(sessionDate),
             duration: form.elements["sessionDuration"].value,
             addedPieces: form.elements["addedPieces"].value,
-        }
-        if (jsonData.sessions == null) {
-            jsonData.sessions = []
         }
         jsonData.sessions.push(newSessionData);
         form.reset();

@@ -67,7 +67,8 @@ function createPuzzle() {
         name: puzzleName,
         piecesCount: piecesCount,
         creationDate: new Date(startDate),
-        lastEdition: Date.now()
+        lastEdition: new Date(),
+        sessions: []
     }
     window.localStorage.setItem(puzzleData.id, JSON.stringify(puzzleData));
     window.onstorage();

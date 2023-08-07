@@ -47,6 +47,46 @@
     flex-grow: 0;
 }
 
+.sessionGraph {
+    height: 200px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: end;
+    border: 1px solid;
+    padding: 20px 20px 60px 20px;
+    border-radius: 20px;
+    gap: 30px 4px;
+}
+
+.sessionGraph::after {
+    content: attr(title);
+    top: 25px;
+    font-family: roboto-regular;
+    flex:0 0 100%;
+    text-align: center;
+}
+
+.sessionGraphCell {
+    width: 0px;
+    min-width: 0px;
+    height: 0%;
+    border: 1px solid;
+    border-radius: 8px 8px 0px 0px;
+    flex-grow: 1;
+    background-color: var(--primaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.sessionGraphCell::after {
+    content: attr(label);
+    position: relative;
+    top: 25px;
+    font-family: roboto-light;
+}
+
 .sessionGrid {
     display: flex;
     flex-flow: column;

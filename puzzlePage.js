@@ -71,7 +71,7 @@ function setupGraph(graphData) {
         sessionGraphCell.setAttribute("class", "sessionGraphCell");
         sessionGraphCell.setAttribute("label", value.label);
         sessionGraphCell.style.setProperty('height', Math.floor((value.value / graphData.maxValue) * 100) + "%");
-        sessionGraphCell.animate(
+        /*sessionGraphCell.animate(
             [
                 // keyframes
                 { 'height': "0%" },
@@ -83,7 +83,7 @@ function setupGraph(graphData) {
                 easing: "ease-in-out",
                 iterations: 1,
             },
-        );
+        );*/
         sessionGraph.appendChild(sessionGraphCell);
         currentSession += 1;
     });

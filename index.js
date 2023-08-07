@@ -57,7 +57,6 @@ function createPuzzle() {
     let startDate = form.elements["startDate"].value;
 
     // Data validation
-    console.log(piecesCount);
     if (puzzleName == "" || isNaN(piecesCount) || piecesCount <= 0 || startDate == "") {
         return;
     }

@@ -4,7 +4,7 @@ function loadPage() {
     jsonData = null;
     let puzzleId = new URLSearchParams(window.location.search).get('id');
     jsonData = JSON.parse(window.localStorage.getItem(puzzleId));
-    jsonData.sessions.sort(function(a, b){
+    jsonData.sessions.sort(function (a, b) {
         return new Date(a.sessionDate) - new Date(b.sessionDate);
     })
     reloadData();
@@ -17,21 +17,10 @@ function reloadData() {
     var sessionCount = 0;
     var addedPiecesCount = 0;
     var totalTimeInMinutes = 0;
-    while (sessionsGrid.lastElementChild) {
-        sessionsGrid.removeChild(sessionsGrid.lastElementChild);
-    }
     sessionCount = jsonData.sessions.length;
     jsonData.sessions.forEach(sessionData => {
         addedPiecesCount += sessionData.addedPieces;
-        let [hours, minutes] = sessionData.duration.split(":");
-        totalTimeInMinutes += Number(hours) * 60 + Number(minutes);
-
-        let sessionCell = sessionCellTemplate.cloneNode(true);
-        sessionCell.id = sessionData.id;
-        sessionCell.querySelector(".sessionCellDuration").innerText = `Session duration: ${sessionData.duration}`;
-        sessionCell.querySelector(".sessionCellAddedPieces").innerText = `Pieces added: ${sessionData.addedPieces}`;
-        sessionCell.hidden = false;
-        sessionsGrid.appendChild(sessionCell);
+        totalTimeInMinutes += getTotalMinutes(sessionData.duration);
     });
 
     // General info
@@ -52,21 +41,23 @@ function reloadData() {
     document.getElementById('piecesPerHour').innerText = Math.floor((addedPiecesCount / (totalTimeInMinutes / 60)));
 
     // Graph
-    var graphData = {
-        values: [],
-        maxValue: 0,
-        title: ""
-    }
-    jsonData.sessions.forEach(sessionData => {
-        graphData.values.push(sessionData.addedPieces);
-    });
-    graphData.maxValue = Math.max(...graphData.values);
-    graphData.title = "Added pieces";
-    setupGraph(graphData);
+    setupGraph(getDurationGraphData());
 
     // Debug spoiler
     document.getElementById('debugJson').innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;
 }
+
+loadPage();
+
+window.onstorage = () => {
+    loadPage();
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Graph
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 function setupGraph(graphData) {
     let sessionGraph = document.getElementById('sessionGraph');
@@ -78,13 +69,13 @@ function setupGraph(graphData) {
     graphData.values.forEach(value => {
         let sessionGraphCell = document.createElement("div");
         sessionGraphCell.setAttribute("class", "sessionGraphCell");
-        sessionGraphCell.setAttribute("label", value);
-        sessionGraphCell.style.setProperty('height', Math.floor((value / graphData.maxValue) * 100) + "%");
+        sessionGraphCell.setAttribute("label", value.label);
+        sessionGraphCell.style.setProperty('height', Math.floor((value.value / graphData.maxValue) * 100) + "%");
         sessionGraphCell.animate(
             [
                 // keyframes
                 { 'height': "0%" },
-                { 'height': Math.floor((value / graphData.maxValue) * 100) + "%" },
+                { 'height': Math.floor((value.value / graphData.maxValue) * 100) + "%" },
             ],
             {
                 // timing options
@@ -98,12 +89,45 @@ function setupGraph(graphData) {
     });
 }
 
-function toHoursAndMinutes(totalMinutes) {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+function getGraphDataStructure() {
+    return {
+        values: [],
+        maxValue: 0,
+        title: ""
+    }
 }
+
+function getAddPiecesGraphData() {
+    var graphData = getGraphDataStructure();
+    jsonData.sessions.forEach(sessionData => {
+        graphData.values.push({
+            label: sessionData.addedPieces,
+            value: sessionData.addedPieces
+        });
+    });
+    graphData.maxValue = Math.max(...graphData.values.map(v => v.value));
+    graphData.title = "Added pieces";
+    return graphData;
+}
+
+function getDurationGraphData() {
+    var graphData = getGraphDataStructure();
+    jsonData.sessions.forEach(sessionData => {
+        graphData.values.push({
+            label: sessionData.duration,
+            value: getTotalMinutes(sessionData.duration)
+        });
+    });
+    graphData.maxValue = Math.max(...graphData.values.map(v => v.value));
+    graphData.title = "Sessions duration";
+    return graphData;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Session creation
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 function newSessionClicked() {
     document.getElementById('sessionDate').value = new Date().toISOString().substring(0, 16);
@@ -145,8 +169,21 @@ function createSession() {
     }
 }
 
-loadPage();
 
-window.onstorage = () => {
-    loadPage();
-};
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Utils
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+function toHoursAndMinutes(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
+
+function getTotalMinutes(duration) {
+    let [hours, minutes] = duration.split(":");
+    return Number(hours) * 60 + Number(minutes);
+}

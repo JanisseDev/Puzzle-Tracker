@@ -52,8 +52,8 @@
                     <p class="statTitle">Pieces left</p>
                 </div>
                 <div class="statCell">
-                    <h3 id="piecesPerSession" class="statValue">-</h3>
-                    <p class="statTitle">Pieces/Session</p>
+                    <h3 id="piecesPerHour" class="statValue">-</h3>
+                    <p class="statTitle">Pieces/h</p>
                 </div>
             </div>
 
@@ -75,10 +75,13 @@
         <h3>Enter your session's data:</h3>
         <form id="newSessionForm" method="dialog">
             <label for="sessionDuration">Session duration: </label>
-            <input id="sessionDuration" type="time" name="sessionDuration" value="00:00" required />
+            <input id="sessionDuration" type="time" name="sessionDuration" required />
             </br>
             <label for="addedPieces">Added piece during the session: </label>
-            <input id="addedPieces" type="number" name="addedPieces" value=0 required />
+            <input id="addedPieces" type="number" name="addedPieces" required />
+            </br>
+            <label for="sessionDate">Session date: </label>
+            <input id="sessionDate" type="datetime-local" name="sessionDate" required />
             </br></br>
             <div>
                 <input type="button" value="Cancel" onclick="newSessionDialogCancel()">

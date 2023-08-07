@@ -48,7 +48,7 @@ function reloadData() {
     document.getElementById('sessionCount').innerText = sessionCount;
     document.getElementById('addedPieces').innerText = addedPiecesCount;
     document.getElementById('piecesLeft').innerText = jsonData.piecesCount - addedPiecesCount;
-    document.getElementById('piecesPerSession').innerText = Math.floor((addedPiecesCount / sessionCount));
+    document.getElementById('piecesPerHour').innerText = Math.floor((addedPiecesCount / (totalTimeInMinutes/60)));
 
     // Debug spoiler
     document.getElementById('debugJson').innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;
@@ -62,6 +62,7 @@ function toHoursAndMinutes(totalMinutes) {
   }
 
 function newSessionClicked() {
+    document.getElementById('sessionDate').value = new Date().toISOString().substring(0, 16);
     document.getElementById('newSessionDialog').showModal();
 }
 
@@ -78,11 +79,20 @@ function newSessionDialogSubmit() {
 function createSession() {
     if (jsonData != null) {
         let form = document.getElementById('newSessionForm');
+        let duration = form.elements["sessionDuration"].value;
+        let addedPieces = parseInt(form.elements["addedPieces"].value);
+        let sessionDate = form.elements["sessionDate"].value;
+
+        // Data validation
+        if (duration == "" || isNaN(addedPieces) || sessionDate == "") {
+            return;
+        }
+
         let newSessionData = {
             id: self.crypto.randomUUID(),
-            creationDate: Date.now(),
+            sessionDate: new Date(sessionDate),
             duration: form.elements["sessionDuration"].value,
-            addedPieces: parseInt(form.elements["addedPieces"].value),
+            addedPieces: form.elements["addedPieces"].value,
         }
         if (jsonData.sessions == null) {
             jsonData.sessions = []

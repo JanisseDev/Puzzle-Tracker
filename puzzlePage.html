@@ -31,8 +31,8 @@
                     </div>
                     <p id="progressTitle" class="statTitle">Progression</p>
                 </div>
-                <div class="statCell">
-                    <h3 id="totalTime" class="statValue">-</h3>
+                <div class="statCell clickable">
+                    <h3 id="totalTime" class="statValue" onclick="setupGraph(getDurationGraphData());">-</h3>
                     <p class="statTitle">Total time</p>
                 </div>
                 <div class="statCell">
@@ -43,8 +43,8 @@
                     <h3 id="sessionCount" class="statValue">-</h3>
                     <p class="statTitle">Session count</p>
                 </div>
-                <div class="statCell">
-                    <h3 id="addedPieces" class="statValue">-</h3>
+                <div class="statCell clickable">
+                    <h3 id="addedPieces" class="statValue" onclick="setupGraph(getAddPiecesGraphData());">-</h3>
                     <p class="statTitle">Added pieces</p>
                 </div>
                 <div class="statCell">

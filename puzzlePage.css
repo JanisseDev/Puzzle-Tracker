@@ -23,6 +23,10 @@
     flex-grow: 1;
 }
 
+.clickable {
+    background-color: var(--accentColor);
+}
+
 .statValue {
     margin: 0px;
     font-size: 26px;

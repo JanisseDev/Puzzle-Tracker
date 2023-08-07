@@ -41,7 +41,7 @@ function reloadData() {
     document.getElementById('piecesPerHour').innerText = Math.floor((addedPiecesCount / (totalTimeInMinutes / 60)));
 
     // Graph
-    setupGraph(getDurationGraphData());
+    setupGraph(getAddPiecesGraphData());
 
     // Debug spoiler
     document.getElementById('debugJson').innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;

@@ -109,7 +109,7 @@ function getTotalPiecesLeftGraphData() {
             value: totalCount
         });
     });
-    graphData.maxValue = Math.max(...graphData.values.map(v => v.value));
+    graphData.maxValue = jsonData.piecesCount;
     graphData.title = "Pieces left";
     return graphData;
 }
@@ -153,7 +153,7 @@ function getProgressionGraphData() {
         });
     });
     graphData.maxValue = 100;
-    graphData.title = "Pieces/hour";
+    graphData.title = "Progression";
     return graphData;
 }
 

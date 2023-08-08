@@ -146,7 +146,7 @@ function getProgressionGraphData() {
     var totalCount = 0;
     jsonData.sessions.forEach(sessionData => {
         totalCount += sessionData.addedPieces;
-        let progression = Math.floor((totalCount/jsonData.piecesCount)*100);
+        let progression = Math.floor((totalCount / jsonData.piecesCount) * 100);
         graphData.values.push({
             label: progression + "%",
             value: progression
@@ -201,6 +201,54 @@ function createSession() {
         window.localStorage.setItem(jsonData.id, JSON.stringify(jsonData));
         window.onstorage();
     }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Json import/export
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+function exportJson() {
+    if (jsonData == null) {
+        return;
+    }
+
+    download(JSON.stringify(jsonData), jsonData.name + ".json", "text/plain");
+}
+
+function importJson() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = e => {
+        // Read file
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.readAsText(file, 'UTF-8');
+        reader.onload = readerEvent => {
+            var content = readerEvent.target.result;
+            // Validate data
+            let importedData = JSON.parse(content);
+            if (importedData.id == jsonData.id && importedData.type == "puzzle") {
+                jsonData = importedData;
+                jsonData.sessions.sort(function (a, b) {
+                    return new Date(a.sessionDate) - new Date(b.sessionDate);
+                })
+                window.localStorage.setItem(jsonData.id, JSON.stringify(jsonData));
+                reloadData();
+            }
+        }
+    }
+    input.click();
 }
 
 

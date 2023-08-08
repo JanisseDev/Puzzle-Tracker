@@ -75,6 +75,31 @@ function createPuzzle() {
     form.reset();
 }
 
+function importJson() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = e => {
+        // Read file
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.readAsText(file, 'UTF-8');
+        reader.onload = readerEvent => {
+            var content = readerEvent.target.result;
+            // Validate data
+            let importedData = JSON.parse(content);
+            if (importedData.id != null && importedData.id != "" && importedData.type == "puzzle") {
+                jsonData = importedData;
+                jsonData.sessions.sort(function (a, b) {
+                    return new Date(a.sessionDate) - new Date(b.sessionDate);
+                })
+                window.localStorage.setItem(jsonData.id, JSON.stringify(jsonData));
+                reloadPuzzles();
+            }
+        }
+    }
+    input.click();
+}
+
 function onPuzzleSelected(id) {
     window.location.href = `puzzlePage.html?id=${id}`;
 }

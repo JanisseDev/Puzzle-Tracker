@@ -1,5 +1,6 @@
 .puzzleGrid {
     display: flex;
+    flex-grow: 1;
     flex-flow: wrap;
     justify-content: flex-start;
     grid-gap: 10px;

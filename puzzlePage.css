@@ -1,5 +1,12 @@
+#puzzleTitle {
+    margin: 0;
+}
+
 .statGrid {
+    flex-grow: 1;
+    flex-basis: 100%;
     display: flex;
+    flex-grow: 1;
     flex-flow: wrap;
     justify-content: flex-start;
     grid-gap: 10px;
@@ -53,6 +60,8 @@
 
 .sessionGraph {
     height: 200px;
+    flex-grow: 1;
+    flex-basis: 100%;
     display: flex;
     flex-flow: wrap;
     justify-content: center;

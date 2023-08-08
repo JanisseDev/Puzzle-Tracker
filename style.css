@@ -7,7 +7,7 @@ h1 {
     font-family: roboto-black;
 }
 
-h2, h3, a, p {
+h2, h3, a, p, button {
     font-family: roboto-regular;
 }
 
@@ -35,6 +35,14 @@ h1.title {
     text-align: center;
 }
 
+button {
+    background: var(--accentColor);
+    border-radius: 8px;
+    border: 0;
+    padding: 8px 12px;
+    color: var(--accentTextColor);;
+}
+
 .mainFlex {
     display: flex;
     margin: 0;
@@ -50,6 +58,11 @@ h1.title {
     opacity: 0.8;
     border-radius: 32px 32px 0px 0px;
     padding: 20px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    gap: 16px;
 }
 
 .flexRowCenterGap10 {

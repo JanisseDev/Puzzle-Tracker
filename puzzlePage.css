@@ -58,9 +58,9 @@
     justify-content: center;
     align-items: end;
     border: 1px solid;
-    padding: 20px 20px 60px 20px;
+    padding: 20px 20px 40px 20px;
     border-radius: 20px;
-    gap: 30px 4px;
+    gap: 12px 4px;
 }
 
 .sessionGraph::after {
@@ -72,23 +72,35 @@
 }
 
 .sessionGraphCell {
+    --fillValue: 0%;
     width: 0px;
     min-width: 0px;
-    height: 0%;
-    border: 1px solid;
-    border-radius: 8px 8px 0px 0px;
+    height: 100%;
     flex-grow: 1;
-    background-color: var(--primaryColor);
     display: flex;
-    justify-content: center;
-    align-items: end;
+    flex-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: 8px;
 }
 
-.sessionGraphCell::after {
-    content: attr(label);
-    position: relative;
-    top: 25px;
-    font-family: roboto-light;
+.sessionGraphCell::before {
+    content: '';
+    height: var(--fillValue);
+    width: 100%;
+    background-color: var(--primaryColor);
+    border-radius: 8px 8px 0px 0px;
+    border: 1px solid;
+    animation: 0.5s sessionGraphCellAppeareance;
+}
+
+@keyframes sessionGraphCellAppeareance {
+    from {height: 0%;}
+    to {height: var(--fillValue);}
+  }
+
+.sessionGraphCell p {
+    margin: 0;
 }
 
 .sessionGrid {

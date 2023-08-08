@@ -69,21 +69,10 @@ function setupGraph(graphData) {
     graphData.values.forEach(value => {
         let sessionGraphCell = document.createElement("div");
         sessionGraphCell.setAttribute("class", "sessionGraphCell");
-        sessionGraphCell.setAttribute("label", value.label);
-        sessionGraphCell.style.setProperty('height', Math.floor((value.value / graphData.maxValue) * 100) + "%");
-        /*sessionGraphCell.animate(
-            [
-                // keyframes
-                { 'height': "0%" },
-                { 'height': Math.floor((value.value / graphData.maxValue) * 100) + "%" },
-            ],
-            {
-                // timing options
-                duration: 600,
-                easing: "ease-in-out",
-                iterations: 1,
-            },
-        );*/
+        sessionGraphCell.style.setProperty('--fillValue', Math.floor((value.value / graphData.maxValue) * 100) + "%");
+        let cellLabel = document.createElement("p");
+        cellLabel.innerText = value.label;
+        sessionGraphCell.appendChild(cellLabel);
         sessionGraph.appendChild(sessionGraphCell);
         currentSession += 1;
     });
@@ -110,6 +99,21 @@ function getAddPiecesGraphData() {
     return graphData;
 }
 
+function getTotalPiecesLeftGraphData() {
+    var graphData = getGraphDataStructure();
+    var totalCount = jsonData.piecesCount;
+    jsonData.sessions.forEach(sessionData => {
+        totalCount -= sessionData.addedPieces;
+        graphData.values.push({
+            label: totalCount,
+            value: totalCount
+        });
+    });
+    graphData.maxValue = Math.max(...graphData.values.map(v => v.value));
+    graphData.title = "Pieces left";
+    return graphData;
+}
+
 function getDurationGraphData() {
     var graphData = getGraphDataStructure();
     jsonData.sessions.forEach(sessionData => {
@@ -120,6 +124,36 @@ function getDurationGraphData() {
     });
     graphData.maxValue = Math.max(...graphData.values.map(v => v.value));
     graphData.title = "Sessions duration";
+    return graphData;
+}
+
+function getPiecesPerHourGraphData() {
+    var graphData = getGraphDataStructure();
+    jsonData.sessions.forEach(sessionData => {
+        let piecesPerHour = Math.floor(sessionData.addedPieces / (getTotalMinutes(sessionData.duration) / 60));
+        graphData.values.push({
+            label: piecesPerHour,
+            value: piecesPerHour
+        });
+    });
+    graphData.maxValue = Math.max(...graphData.values.map(v => v.value));
+    graphData.title = "Pieces/hour";
+    return graphData;
+}
+
+function getProgressionGraphData() {
+    var graphData = getGraphDataStructure();
+    var totalCount = 0;
+    jsonData.sessions.forEach(sessionData => {
+        totalCount += sessionData.addedPieces;
+        let progression = Math.floor((totalCount/jsonData.piecesCount)*100);
+        graphData.values.push({
+            label: progression + "%",
+            value: progression
+        });
+    });
+    graphData.maxValue = 100;
+    graphData.title = "Pieces/hour";
     return graphData;
 }
 

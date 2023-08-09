@@ -104,14 +104,6 @@ function onPuzzleSelected(id) {
     window.location.href = `puzzlePage.html?id=${id}`;
 }
 
-function deletePuzzleClicked(deleteButton, event) {
-    stopEventPropagation(event);
-    if (confirm(`Are you sure you want to delete puzzle #${deleteButton.parentNode.id}`)) {
-        window.localStorage.removeItem(deleteButton.parentNode.id);
-        window.onstorage();
-    }
-}
-
 function stopEventPropagation(event) {
     if (event.stopPropagation) {
         event.stopPropagation();

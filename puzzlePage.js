@@ -251,6 +251,13 @@ function importJson() {
     input.click();
 }
 
+function deletePuzzle() {
+    if (confirm(`Are you sure you want to delete puzzle \"${jsonData.name}\"`)) {
+        window.localStorage.removeItem(jsonData.id);
+        window.location.href = "index.html";
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////

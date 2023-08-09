@@ -34,6 +34,43 @@ button {
     color: var(--accentTextColor);
 }
 
+button.cancel {
+    background: var(--accentTextColor);
+    border-color: var(--accentColor);
+    color: var(--accentColor);
+}
+
+dialog {
+    border-radius: 8px;
+    border: 0;
+    display: grid;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+dialog h3 {
+    flex-basis: 100%;
+    margin: 16px 0px;
+}
+
+dialog form label {
+    flex-basis: 100%;
+    white-space: nowrap;
+}
+
+dialog .choicesDiv {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+}
+
+form {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: min-content 1fr;
+}
+
 .mainFlex {
     display: flex;
     margin: 0;

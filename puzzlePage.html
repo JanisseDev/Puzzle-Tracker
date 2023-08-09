@@ -79,21 +79,18 @@
     <!-- DIALOGS -->
     <dialog id="newSessionDialog">
         <h3>Enter your session's data:</h3>
-        <form id="newSessionForm" method="dialog">
-            <label for="sessionDuration">Session duration: </label>
+        <form id="newSessionForm" method="dialog" autocomplete="off" onsubmit="newSessionDialogSubmit()">
+            <label for="sessionDuration">Duration: </label>
             <input id="sessionDuration" type="time" name="sessionDuration" required />
-            </br>
-            <label for="addedPieces">Added piece during the session: </label>
+            <label for="addedPieces">Added pieces: </label>
             <input id="addedPieces" type="number" name="addedPieces" required />
-            </br>
-            <label for="sessionDate">Session date: </label>
+            <label for="sessionDate">Date: </label>
             <input id="sessionDate" type="datetime-local" name="sessionDate" required />
-            </br></br>
-            <div>
-                <input type="button" value="Cancel" onclick="newSessionDialogCancel()">
-                <input type="button" value="Submit" onclick="newSessionDialogSubmit()">
-            </div>
         </form>
+        <div class="choicesDiv">
+            <button class="cancel" onclick="newSessionDialogCancel()">Cancel</button>
+            <button onclick="newSessionDialogSubmit()">Create</button>
+        </div>
     </dialog>
 </body>
 

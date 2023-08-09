@@ -45,9 +45,10 @@ function newPuzzleDialogCancel() {
 }
 
 function newPuzzleDialogSubmit() {
-    createPuzzle();
-    let dialog = document.getElementById('newPuzzleDialog');
+    if (createPuzzle()) {
+        let dialog = document.getElementById('newPuzzleDialog');
     dialog.close();
+    }
 }
 
 function createPuzzle() {
@@ -58,7 +59,7 @@ function createPuzzle() {
 
     // Data validation
     if (puzzleName == "" || isNaN(piecesCount) || piecesCount <= 0 || startDate == "") {
-        return;
+        return false;
     }
 
     let puzzleData = {
@@ -73,6 +74,7 @@ function createPuzzle() {
     window.localStorage.setItem(puzzleData.id, JSON.stringify(puzzleData));
     window.onstorage();
     form.reset();
+    return true;
 }
 
 function importJson() {
@@ -94,6 +96,7 @@ function importJson() {
                 })
                 window.localStorage.setItem(jsonData.id, JSON.stringify(jsonData));
                 reloadPuzzles();
+                document.getElementById('newPuzzleDialog').close();
             }
         }
     }

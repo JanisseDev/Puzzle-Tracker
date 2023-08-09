@@ -34,24 +34,21 @@
     <!-- DIALOGS -->
     <dialog id="newPuzzleDialog">
         <h3>Configure your puzzle:</h3>
-        <form id="newPuzzleForm" method="dialog">
+        <form id="newPuzzleForm" method="dialog" autocomplete="off" onsubmit="newPuzzleDialogSubmit()">
             <label for="puzzleName">Name: </label>
             <input id="puzzleName" type="text" name="puzzleName" minlength="4" value="" required />
-            </br>
             <label for="piecesCount">Pieces count: </label>
             <input id="piecesCount" type="number" name="piecesCount" required />
-            </br>
             <label for="startDate">Start date: </label>
             <input id="startDate" type="date" name="startDate" required />
-            </br></br>
-            <div>
-                <input type="button" value="Cancel" onclick="newPuzzleDialogCancel()">
-                <input type="button" value="Submit" onclick="newPuzzleDialogSubmit()">
-            </div>
-            </br></br>
-            </br></br>
-            <button onclick="importJson()">Import puzzle data</button>
+            <input type="submit" hidden="true" />
         </form>
+        <div class="choicesDiv">
+            <button class="cancel" onclick="newPuzzleDialogCancel()">Cancel</button>
+            <button onclick="newPuzzleDialogSubmit()">Create</button>
+        </div>
+        <p style="text-align: center; opacity: 40%;">------------ or ------------</p>
+        <button onclick="importJson()">Import puzzle data</button>
     </dialog>
 
     <!-- TEMPLATES -->

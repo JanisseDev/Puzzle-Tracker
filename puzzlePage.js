@@ -44,7 +44,10 @@ function reloadData() {
     setupGraph(getAddPiecesGraphData());
 
     // Debug spoiler
-    document.getElementById('debugJson').innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;
+    let debugJson = document.getElementById('debugJson');
+    if (debugJson) {
+        debugJson.innerHTML = `<pre><code>${JSON.stringify(jsonData, null, "\t")}</code></pre>`;
+    }
 }
 
 loadPage();
